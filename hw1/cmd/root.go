@@ -35,6 +35,34 @@ var rootCmd = &cobra.Command{
 					Inputs: []any{20172561},
 				},
 			),
+			pkg.EncWithCapability(
+				pkg.Capability{
+					Name:   "octal",
+					CapF:   pkg.Octal,
+					Inputs: []any{20172561},
+				},
+			),
+			pkg.EncWithCapability(
+				pkg.Capability{
+					Name:   "hexadecimal",
+					CapF:   pkg.Hexadecimal,
+					Inputs: []any{20172561},
+				},
+			),
+			pkg.EncWithCapability(
+				pkg.Capability{
+					Name:   "base64",
+					CapF:   pkg.Base64,
+					Inputs: []any{20172561},
+				},
+			),
+			pkg.EncWithCapability(
+				pkg.Capability{
+					Name:   "base58",
+					CapF:   pkg.Base58,
+					Inputs: []any{20172561},
+				},
+			),
 		)
 		enc := pkg.GetEncryptor(encOpts)
 
