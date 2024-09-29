@@ -63,6 +63,20 @@ var rootCmd = &cobra.Command{
 					Inputs: []any{20172561},
 				},
 			),
+			pkg.EncWithCapability(
+				pkg.Capability{
+					Name:   "caesar",
+					CapF:   pkg.Caesar,
+					Inputs: []any{[]any{20172561 % 26, "DOVYDASDOMARKAS"}},
+				},
+			),
+			pkg.EncWithCapability(
+				pkg.Capability{
+					Name:   "vigenere",
+					CapF:   pkg.Vigenere,
+					Inputs: []any{[]any{"DOVYDASDOMARKAS", "VILNIUSGEDIMINASTECHNIKALUNIVERSITY"}},
+				},
+			),
 		)
 		enc := pkg.GetEncryptor(encOpts)
 
