@@ -13,6 +13,7 @@ var rootCmd = &cobra.Command{
 	Short: "Homework One For Cryptographic Systems",
 	Long:  ``,
 	Run: func(cmd *cobra.Command, args []string) {
+		// TODO: parse somek YAML to configure
 		encOpts := pkg.GetEncryptorOptions(
 			pkg.EncWithCapability(
 				pkg.Capability{
@@ -75,6 +76,17 @@ var rootCmd = &cobra.Command{
 					Name:   "vigenere",
 					CapF:   pkg.Vigenere,
 					Inputs: []any{[]any{"DOVYDASDOMARKAS", "VILNIUSGEDIMINASTECHNIKALUNIVERSITY"}},
+				},
+			),
+			pkg.EncWithCapability(
+				pkg.Capability{
+					Name: "aes",
+					CapF: pkg.AES,
+					Inputs: []any{pkg.AESArgs{
+						PlainTextSource:     "DovydasDomarkas",
+						PlainTextBytesCount: 8,
+						KeySource:           "20172561",
+					}},
 				},
 			),
 		)
