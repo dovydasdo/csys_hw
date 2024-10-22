@@ -27,8 +27,10 @@ func AES(input any) (string, error) {
 		}
 
 		outBytes := make([]byte, in.PlainTextBytesCount)
+
 		cypher.Encrypt(outBytes, plainTextBlock)
 		fmt.Printf("encrypted bytes length: %v, bytes: %v \n", len(outBytes), outBytes)
+		printBytesAsBinary(outBytes)
 
 		decBytes := make([]byte, in.PlainTextBytesCount)
 		cypher.Decrypt(decBytes, outBytes)
@@ -43,6 +45,7 @@ func AES(input any) (string, error) {
 		outBytesFB := make([]byte, in.PlainTextBytesCount)
 		cypher.Encrypt(outBytesFB, fPlainTextBytes)
 		diffPT := countBitDifferences(outBytes, outBytesFB)
+		printBytesAsBinary(outBytesFB)
 		fmt.Printf("diff from flipping plain text: %v \n", diffPT)
 
 		fkPlainTextByte := keyBlock[in.PlainTextBytesCount-1]
@@ -51,6 +54,7 @@ func AES(input any) (string, error) {
 		outBytesFBK := make([]byte, in.PlainTextBytesCount)
 		cypher.Encrypt(outBytesFBK, fKeyBytes)
 		diffK := countBitDifferences(outBytes, outBytesFBK)
+		printBytesAsBinary(outBytesFBK)
 		fmt.Printf("diff from flipping key: %v \n", diffK)
 	} else {
 		return "", errors.New("expected AESArgs as input")
@@ -87,4 +91,10 @@ func countBitDifferences(b1, b2 []byte) int {
 	}
 
 	return totalDifferences
+}
+
+func printBytesAsBinary(b []byte) {
+	for _, n := range b {
+		fmt.Printf("%08b ", n)
+	}
 }
