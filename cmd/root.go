@@ -140,6 +140,16 @@ var hwTwoCmd = &cobra.Command{
 					}},
 				},
 			),
+			hwone.EncWithCapability(
+				hwone.Capability{
+					Name: "sha",
+					CapF: hwtwo.SHA,
+					Inputs: []any{hwtwo.SHAArgs{
+						PlainTextSource: "DovydasDomarkas",
+						MaxSearch:       1000000,
+					}},
+				},
+			),
 		)
 		enc := hwone.GetEncryptor(encOpts)
 
