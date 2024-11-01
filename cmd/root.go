@@ -90,9 +90,9 @@ var hwOneCmd = &cobra.Command{
 			),
 			hwone.EncWithCapability(
 				hwone.Capability{
-					Name: "aes",
-					CapF: hwone.AES,
-					Inputs: []any{hwone.AESArgs{
+					Name: "des",
+					CapF: hwone.DES,
+					Inputs: []any{hwone.DESArgs{
 						PlainTextSource:     "DovydasDomarkas",
 						PlainTextBytesCount: 8,
 						KeySource:           "20172561",
@@ -126,6 +126,17 @@ var hwTwoCmd = &cobra.Command{
 						B2:  2561,
 						B:   20172561,
 						Mod: 661,
+					}},
+				},
+			),
+			hwone.EncWithCapability(
+				hwone.Capability{
+					Name: "aes",
+					CapF: hwtwo.AES,
+					Inputs: []any{hwtwo.AESArgs{
+						PlainTextSource:     "DovydasDomarkas",
+						PlainTextBytesCount: 16,
+						KeySource:           "20172561",
 					}},
 				},
 			),
