@@ -2,6 +2,7 @@ package cmd
 
 import (
 	hwone "csyshw/hw1"
+	hwtwo "csyshw/hw2"
 	"fmt"
 	"os"
 
@@ -115,7 +116,28 @@ var hwTwoCmd = &cobra.Command{
 	Short: "Homework One For Cryptographic Systems",
 	Long:  ``,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Printf("running hw two")
+		encOpts := hwone.GetEncryptorOptions(
+			hwone.EncWithCapability(
+				hwone.Capability{
+					Name: "Euclid",
+					CapF: hwtwo.Euclid,
+					Inputs: []any{hwtwo.EuclidArg{
+						B1:  2017,
+						B2:  2561,
+						B:   20172561,
+						Mod: 661,
+					}},
+				},
+			),
+		)
+		enc := hwone.GetEncryptor(encOpts)
+
+		result, err := enc.Execute()
+		if err != nil {
+			panic(err)
+		}
+
+		fmt.Print(result)
 	},
 }
 
