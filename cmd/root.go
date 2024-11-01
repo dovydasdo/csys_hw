@@ -9,7 +9,16 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "hw",
+	Use:   "csyshw",
+	Short: "Homework One For Cryptographic Systems",
+	Long:  ``,
+	Run: func(cmd *cobra.Command, args []string) {
+		fmt.Println("please select specific wh to run")
+	},
+}
+
+var hwOneCmd = &cobra.Command{
+	Use:   "one",
 	Short: "Homework One For Cryptographic Systems",
 	Long:  ``,
 	Run: func(cmd *cobra.Command, args []string) {
@@ -101,6 +110,15 @@ var rootCmd = &cobra.Command{
 	},
 }
 
+var hwTwoCmd = &cobra.Command{
+	Use:   "two",
+	Short: "Homework One For Cryptographic Systems",
+	Long:  ``,
+	Run: func(cmd *cobra.Command, args []string) {
+		fmt.Printf("running hw two")
+	},
+}
+
 func Execute() {
 	err := rootCmd.Execute()
 	if err != nil {
@@ -110,4 +128,6 @@ func Execute() {
 
 func init() {
 	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	rootCmd.AddCommand(hwOneCmd)
+	rootCmd.AddCommand(hwTwoCmd)
 }
